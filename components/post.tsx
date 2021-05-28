@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import { InlineWysiwyg } from "react-tinacms-editor";
 import { InlineText } from "react-tinacms-inline";
 import type {
   Authors_Document,
@@ -12,7 +13,9 @@ export const BlogPost = (props: Article_Doc_Data) => {
         <h1>{props.title}</h1>
       </InlineText>
       <AuthorSnippet author={props.author} />
-      <ReactMarkdown>{props._body}</ReactMarkdown>
+      <InlineWysiwyg name="_body">
+         <ReactMarkdown>{props._body}</ReactMarkdown>
+      </InlineWysiwyg>
     </>
   );
 };
