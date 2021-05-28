@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, TinaCMS } from "tinacms";
+import { Form, TinaCMS, useCMS } from "tinacms";
 import { TinaCloudAuthWall } from "tina-graphql-gateway";
 import { SidebarPlaceholder } from "./helper-components";
 import { createClient } from "../utils";
@@ -43,11 +43,12 @@ const Inner = (props) => {
   const [payload, isLoading] = useGraphqlForms({
     query: (gql) => gql(props.query),
     variables: props.variables || {},
-    formify: ({createForm, formConfig})=>{
+    formify: ({createForm, formConfig,skip})=>{
       console.log(formConfig.id)
       if(formConfig.id === 'getPostsDocument'){
-        const form = new Form(formConfig)
+        const form = createForm(formConfig)
         setForm(form)
+        return skip()
       }
       return createForm(formConfig)
     }

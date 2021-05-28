@@ -1,5 +1,5 @@
 ---
-title: Vote For Pedro
+title: Vote For Pedro asdf
 author: content/authors/napolean.md
 _template: article
 ---
