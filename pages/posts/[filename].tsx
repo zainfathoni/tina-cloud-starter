@@ -2,16 +2,27 @@ import { BlogPost } from "../../components/post";
 import type { Posts_Document } from "../../.tina/__generated__/types";
 import { createLocalClient, AsyncReturnType } from "../../utils";
 import { Wrapper } from "../../components/helper-components";
+import { InlineWysiwyg } from "react-tinacms-editor";
+import { InlineForm } from "react-tinacms-inline";
 
 // Use the props returned by get static props
 export default function BlogPostPage(
   props: AsyncReturnType<typeof getStaticProps>["props"]
 ) {
+  {/* @ts-ignore */}
+  console.log(props.form)
   return (
     <>
       <Wrapper data={props.data.getPostsDocument.data}>
-        <BlogPost {...props.data.getPostsDocument.data} />
+        {/* @ts-ignore */}
+        {props.form && <InlineForm form={props.form}>
+            <BlogPost {...props.data.getPostsDocument.data} />
+        </InlineForm>}
       </Wrapper>
+      <code>
+        {/* @ts-ignore */}
+        {JSON.stringify(props?.form || {})}
+      </code>
     </>
   );
 }

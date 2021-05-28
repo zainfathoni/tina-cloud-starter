@@ -1,5 +1,5 @@
-import React from "react";
-import { TinaCMS } from "tinacms";
+import React, { useState } from "react";
+import { Form, TinaCMS } from "tinacms";
 import { TinaCloudAuthWall } from "tina-graphql-gateway";
 import { SidebarPlaceholder } from "./helper-components";
 import { createClient } from "../utils";
@@ -19,6 +19,7 @@ const TinaWrapper = (props) => {
       sidebar: {
         placeholder: SidebarPlaceholder,
       },
+      toolbar: true,
       enabled: true,
     });
   }, []);
@@ -38,9 +39,18 @@ const TinaWrapper = (props) => {
 };
 
 const Inner = (props) => {
+  const [form, setForm] =useState<Form>()
   const [payload, isLoading] = useGraphqlForms({
     query: (gql) => gql(props.query),
     variables: props.variables || {},
+    formify: ({createForm, formConfig})=>{
+      console.log(formConfig.id)
+      if(formConfig.id === 'getPostsDocument'){
+        const form = new Form(formConfig)
+        setForm(form)
+      }
+      return createForm(formConfig)
+    }
   });
   return (
     <>
@@ -57,7 +67,7 @@ const Inner = (props) => {
         </>
       ) : (
         // pass the new edit state data to the child
-        props.children({ ...props, data: payload })
+        props.children({ ...props, data: payload, form: form })
       )}
     </>
   );

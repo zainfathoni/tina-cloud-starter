@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import { InlineText } from "react-tinacms-inline";
 import type {
   Authors_Document,
   Article_Doc_Data,
@@ -7,7 +8,9 @@ import type {
 export const BlogPost = (props: Article_Doc_Data) => {
   return (
     <>
-      <h1>{props.title}</h1>
+      <InlineText name="title">
+        <h1>{props.title}</h1>
+      </InlineText>
       <AuthorSnippet author={props.author} />
       <ReactMarkdown>{props._body}</ReactMarkdown>
     </>

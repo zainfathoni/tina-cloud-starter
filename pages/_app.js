@@ -6,7 +6,7 @@ import {EditProvider, setEditing, useEditState} from '../utils/editState'
 // InnerApp that handles rendering edit mode or not
 function InnerApp({ Component, pageProps }) {
   const {edit} = useEditState()
-  if (edit) {
+  if (true) {
     // Dynamically load Tina only when in edit mode so it does not affect production
     // see https://nextjs.org/docs/advanced-features/dynamic-import#basic-usage
     const TinaWrapper = dynamic(() => import("../components/tina-wrapper"));
