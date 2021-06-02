@@ -5,6 +5,7 @@ import { SidebarPlaceholder } from "./helper-components";
 import { createClient } from "../utils";
 import { useGraphqlForms } from "tina-graphql-gateway";
 import { LoadingPage } from "./Spinner";
+import { CloudinaryMediaStore } from "../next-tinacms-cloudinary";
 
 /**
  * This gets loaded dynamically in "pages/_app.js"
@@ -20,15 +21,18 @@ const TinaWrapper = (props) => {
         placeholder: SidebarPlaceholder,
       },
       enabled: true,
+      media: new CloudinaryMediaStore(
+        process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+      ),
     });
   }, []);
 
   /** Disables the TinaCMS "Media Manager" */
-  cms.plugins.all("screen").forEach((plugin) => {
-    if (plugin.name === "Media Manager") {
-      cms.plugins.remove(plugin);
-    }
-  });
+  // cms.plugins.all("screen").forEach((plugin) => {
+  //   if (plugin.name === "Media Manager") {
+  //     cms.plugins.remove(plugin);
+  //   }
+  // });
 
   return (
     <TinaCloudAuthWall cms={cms}>
