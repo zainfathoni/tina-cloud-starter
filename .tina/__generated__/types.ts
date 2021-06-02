@@ -179,6 +179,7 @@ export type Posts_Document = Node & Document & {
 export type Article_Doc_Data = {
   __typename?: 'Article_Doc_Data';
   title?: Maybe<Scalars['String']>;
+  heroImg?: Maybe<Scalars['String']>;
   author?: Maybe<Authors_Document>;
   _body?: Maybe<Scalars['String']>;
 };
@@ -186,6 +187,7 @@ export type Article_Doc_Data = {
 export type Article_Doc_Values = {
   __typename?: 'Article_Doc_Values';
   title?: Maybe<Scalars['String']>;
+  heroImg?: Maybe<Scalars['String']>;
   author?: Maybe<Scalars['Reference']>;
   _body?: Maybe<Scalars['String']>;
   _template?: Maybe<Scalars['String']>;
@@ -224,6 +226,7 @@ export type Article_Doc_Form = {
 
 export type Article_Doc_Input = {
   title?: Maybe<Scalars['String']>;
+  heroImg?: Maybe<Scalars['String']>;
   author?: Maybe<Scalars['String']>;
   _body?: Maybe<Scalars['String']>;
 };

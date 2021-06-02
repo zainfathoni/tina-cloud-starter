@@ -22,6 +22,7 @@ export const query = `#graphql
       data {
         __typename
         ... on Article_Doc_Data {
+          heroImg
           title
           author {
             data {

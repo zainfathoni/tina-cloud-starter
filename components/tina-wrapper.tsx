@@ -1,5 +1,5 @@
 import React from "react";
-import { TinaCMS } from "tinacms";
+import { Media, TinaCMS } from "tinacms";
 import { TinaCloudAuthWall } from "tina-graphql-gateway";
 import { SidebarPlaceholder } from "./helper-components";
 import { createClient } from "../utils";
@@ -45,6 +45,18 @@ const Inner = (props) => {
   const [payload, isLoading] = useGraphqlForms({
     query: (gql) => gql(props.query),
     variables: props.variables || {},
+    formify: ({ createForm, formConfig, skip }) => {
+      formConfig.fields.forEach((field) => {
+        if (field.name === "heroImg") {
+          field.component = "image";
+          // field.previewSrc = (img) => img.previewSrc;
+          // field.parse = (img: Media) => {
+          //   return img;
+          // };
+        }
+      });
+      return createForm(formConfig);
+    },
   });
   return (
     <>
