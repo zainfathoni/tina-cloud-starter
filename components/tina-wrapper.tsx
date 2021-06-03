@@ -49,9 +49,9 @@ const Inner = (props) => {
       formConfig.fields.forEach((field) => {
         if (field.name === "heroImg") {
           field.component = "image";
-          // field.previewSrc = (img) => img.previewSrc;
+          field.previewSrc = (img) => img.previewSrc;
           // field.parse = (img: Media) => {
-          //   return img;
+          //   return img.previewSrc;
           // };
         }
       });

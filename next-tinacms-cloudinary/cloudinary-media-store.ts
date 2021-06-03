@@ -18,7 +18,8 @@ export class CloudinaryMediaStore implements MediaStore {
     });
   }
 
-  async persist(media: MediaUploadOptions[]) {
+  async persist(media: MediaUploadOptions[]): Promise<Media[]> {
+    // TODO: Fix only one file upload
     const { file, directory } = media[0];
     const formData = new FormData();
     formData.append("file", file);
@@ -34,12 +35,23 @@ export class CloudinaryMediaStore implements MediaStore {
       const responseData = await res.json();
       throw new Error(responseData.message);
     }
+    console.log("this is a test");
+    // console.log(await res.text());
+    const fileRes = await res.json();
+    console.log({ fileRes });
 
     // TODO be programmer
     await new Promise((resolve) => {
       setTimeout(resolve, 2000);
     });
-    return [];
+    const mediaReturn: Media = {
+      directory: directory,
+      filename: fileRes.public_id,
+      id: fileRes.public_id,
+      type: "file",
+      previewSrc: fileRes.secure_url,
+    };
+    return [mediaReturn];
   }
   async delete(media: Media) {
     await fetch(`/api/cloudinary/media/${encodeURIComponent(media.id)}`, {
