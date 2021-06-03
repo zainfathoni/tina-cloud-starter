@@ -49,10 +49,15 @@ const Inner = (props) => {
       formConfig.fields.forEach((field) => {
         if (field.name === "heroImg") {
           field.component = "image";
-          field.previewSrc = (img) => img.previewSrc;
-          // field.parse = (img: Media) => {
-          //   return img.previewSrc;
-          // };
+          field.previewSrc = (img) => {
+            console.log("preview src is being run");
+            return img;
+          };
+          field.parse = (img: Media) => {
+            console.log({ img });
+            console.log("this is running!!!");
+            return img.previewSrc;
+          };
         }
       });
       return createForm(formConfig);

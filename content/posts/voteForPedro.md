@@ -1,5 +1,7 @@
 ---
 title: Vote For Pedro
+heroImg: >-
+  https://res.cloudinary.com/forestry-logan/image/upload/c_fill,g_auto,h_56,w_56/r1ciwtidz6hlbrpxiykn
 author: content/authors/napolean.md
 _template: article
 ---
